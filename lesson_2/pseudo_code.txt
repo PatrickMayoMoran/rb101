@@ -11,12 +11,60 @@ END
 
 # Method that takes an array of strings and returns a string that is 
 # all those strings concatenated together
+START
+
+SET big_string = ""
+
+iterate through array, concatenating each value
+SET iterator = 0
+
+WHILE iterator < str_array.length
+SET next_up = str_array[0]
+SET big_string << next_up
+SET iterator = iterator + 1
+
+PRINT big_string
+
+END
 
 # Method that takes an array of integers and returns a new array with every
 # other element from the original array, starting with the first element
+START
+
+SET new_array = []
+SET iterator = 0
+
+WHILE iterator < integer_array.length
+  IF iterator is even
+    SET new_array << integer_array[iterator]
+  ELSE
+    go to next iteration
+
+PRINT new_array
 
 # Method that determines 3rd occurence of a given character in a string
 # If given character does not occur 3 times, return nil
+START
+
+Given a string, given a search_character
+SET occurrences = 0
+SET iterator = 0
+
+iterate through string, checking for character
+WHILE iterator < string.length
+IF string[iterator] is the same as search_character
+  SET occurrences = occurences + 1
+ELSE
+  go to next char
+
+IF occurrences is 3
+  PRINT string[iterator]
+  END
+ELSE
+  go to next char
+
+PRINT nil IF we never got to 3 occurrences after iterating through string
+END
 
 # Method takes two arrays and returns results of merging the arrays
 # Elements of first array become elements at even indices
