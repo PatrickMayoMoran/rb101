@@ -70,5 +70,23 @@ END
 # Elements of first array become elements at even indices
 # Elements of second array become elements at odd indices
 # Assume arrays are same length
+# Question: destructive or non-destructive? How would I do non-destructive?
+START
 
+given array 1 and array 2
+SET new_array = []
+SET new_array_length = array 1 length + array 2 length
+SET iterator = 0
+SET array_1_index = 0
+SET array_2_index = 0
+WHILE iterator < new_array_length
+  IF iterator is even
+    take element at array_1_index and add to new_array
+    SET array_1_index += 1
+  ELSE
+    take element at array_2_index and add to new_array
+    SET array_2_index += 1
+  SET iterator = iterator + 1
+
+PRINT new_array
 
