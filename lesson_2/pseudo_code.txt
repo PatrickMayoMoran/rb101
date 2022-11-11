@@ -1,0 +1,26 @@
+# Method that returns the sum of two integers
+START
+
+num1 = READ integer 1
+num2 = READ integer 2
+SET sum = num 1 + num2
+
+PRINT sum
+
+END
+
+# Method that takes an array of strings and returns a string that is 
+# all those strings concatenated together
+
+# Method that takes an array of integers and returns a new array with every
+# other element from the original array, starting with the first element
+
+# Method that determines 3rd occurence of a given character in a string
+# If given character does not occur 3 times, return nil
+
+# Method takes two arrays and returns results of merging the arrays
+# Elements of first array become elements at even indices
+# Elements of second array become elements at odd indices
+# Assume arrays are same length
+
+
