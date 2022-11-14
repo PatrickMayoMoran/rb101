@@ -56,6 +56,6 @@ loop do # Main loop
 
   prompt("Do you want to perform another calculation? (Y to calculate again)")
   again = gets.chomp
-  break if again.downcase == 'y'
+  break unless again.downcase == 'y'
 
 end
