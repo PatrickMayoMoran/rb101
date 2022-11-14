@@ -55,7 +55,7 @@ loop do # Main loop
   prompt("The result is #{result}")
 
   prompt("Do you want to perform another calculation? (Y to calculate again)")
-  again = gets.chomp
-  break unless again.downcase == 'y'
+  again = Kernel.gets().chomp()
+  break unless again.downcase().start_with?('y') == true
 
 end
