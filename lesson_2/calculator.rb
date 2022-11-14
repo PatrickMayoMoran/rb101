@@ -59,3 +59,5 @@ loop do # Main loop
   break unless again.downcase().start_with?('y') == true
 
 end
+
+prompt("Goodbye! Thanks for using the calculator.")
