@@ -10,9 +10,8 @@ def valid_number?(num)
   num.to_i != 0
 end
 
+prompt("Welcome to Calculator!")
 loop do # Main loop
-  prompt("Welcome to Calculator!")
-  
   number1 = ''
   loop do
     prompt("What's the first number?")
