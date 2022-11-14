@@ -51,8 +51,17 @@ loop do # Main loop
   
   prompt("What operation would you like to perform?")
   prompt("\n1) add \n2) subtract \n3) multiply \n4) divide")
-  operator = Kernel.gets().chomp()
   
+  operator = ''
+  loop do
+  operator = Kernel.gets().chomp()
+    if %w(1 2 3 4).include?(operator)
+      break
+    else
+      prompt("Must enter 1, 2, 3, or 4")
+    end
+  end
+
   result =  case operator 
             when '1'
               number1.to_i + number2.to_i
