@@ -10,6 +10,19 @@ def valid_number?(num)
   num.to_i != 0
 end
 
+def operator_to_message(op)
+  case op
+  when '1'
+    'adding'
+  when '2'
+    'subtracting'
+  when '3'
+    'multiplying'
+  when '4'
+    'dividing'
+  end
+end
+
 prompt("Welcome to Calculator! Please enter your name:")
 
 name = ''
@@ -29,26 +42,26 @@ loop do # Main loop
   loop do
     prompt("What's the first number?")
     number1 = Kernel.gets().chomp()
-  
+
     if valid_number?(number1)
       break
     else
       prompt('Hmm... that doesn\'t look like a valid number. Try again')
     end
   end
-  
+
   number2 = ''
   loop do
     prompt("What's the second number?")
     number2 = Kernel.gets().chomp()
-  
+
     if valid_number?(number2)
       break
     else
       prompt('Hmm... that doesn\'t look like a valid number. Try again')
     end
   end
-  
+
   operator_prompt = <<-MSG
   What operation would you like to perform?
   1) add
@@ -57,10 +70,10 @@ loop do # Main loop
   4) divide
   MSG
   prompt(operator_prompt)
-  
+
   operator = ''
   loop do
-  operator = Kernel.gets().chomp()
+    operator = Kernel.gets().chomp()
     if %w(1 2 3 4).include?(operator)
       break
     else
@@ -68,23 +81,23 @@ loop do # Main loop
     end
   end
 
-  result =  case operator 
+  prompt("#{operator_to_message(operator)} #{number1} and #{number2}...")
+  result =  case operator
             when '1'
               number1.to_i + number2.to_i
             when '2'
-              number1.to_i - number2.to_i 
+              number1.to_i - number2.to_i
             when '3'
-              number1.to_i * number2.to_i 
+              number1.to_i * number2.to_i
             when '4'
-              number1.to_f / number2.to_f 
-  end
-  
+              number1.to_f / number2.to_f
+            end
+
   prompt("The result is #{result}")
 
   prompt("Do you want to perform another calculation? (Y to calculate again)")
   again = Kernel.gets().chomp()
   break unless again.downcase().start_with?('y') == true
-
 end
 
 prompt("Goodbye! Thanks for using the calculator.")
