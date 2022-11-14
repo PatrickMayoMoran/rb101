@@ -9,6 +9,7 @@ end
 def valid_number?(num)
   num.to_i != 0
 end
+
 loop do # Main loop
   prompt("Welcome to Calculator!")
   
@@ -52,4 +53,9 @@ loop do # Main loop
   end
   
   prompt("The result is #{result}")
+
+  prompt("Do you want to perform another calculation? (Y to calculate again)")
+  again = gets.chomp
+  break if again.downcase == 'y'
+
 end
