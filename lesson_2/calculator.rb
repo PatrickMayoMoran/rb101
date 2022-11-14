@@ -10,7 +10,20 @@ def valid_number?(num)
   num.to_i != 0
 end
 
-prompt("Welcome to Calculator!")
+prompt("Welcome to Calculator! Please enter your name:")
+
+name = ''
+loop do
+  name = Kernel.gets().chomp()
+  if name.empty?
+    prompt("Hmm... make sure to enter a valid name")
+  else
+    break
+  end
+end
+
+prompt("Hi #{name}! Let's get calculating!")
+
 loop do # Main loop
   number1 = ''
   loop do
@@ -37,7 +50,7 @@ loop do # Main loop
   end
   
   prompt("What operation would you like to perform?")
-  prompt("1) add \n2) subtract \n3) multiply \n4) divide")
+  prompt("\n1) add \n2) subtract \n3) multiply \n4) divide")
   operator = Kernel.gets().chomp()
   
   result =  case operator 
