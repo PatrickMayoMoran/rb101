@@ -31,7 +31,13 @@ end
 
 # format_loan_amount
 # loan_string_to_integer
-# move_to_next_calculation?
+
+def confirmation?(entry)
+  prompt("You've entered #{entry}. Is this correct?")
+  prompt("Type 'yes' to continue; type anything else to reenter loan amount.")
+  confirmation = Kernel.gets().chomp()
+  return true if confirmation.downcase.start_with?('y')
+end
 #
 # Greet the user and ask for name
 prompt("Hello and welcome to the mortgage calculator! Please enter your name:")
@@ -81,10 +87,7 @@ loop do
     prompt("Not a valid number - please enter a valid loan amount:")
   end
  # user confirms this is correct
- prompt("You've entered #{loan_amount}. Is this correct?")
- prompt("Type 'yes' to continue; type anything else to reenter loan amount.")
- confirmation = Kernel.gets().chomp()
- break if confirmation.downcase.start_with?('y')
+ break if confirmation?(loan_amount)
 end
 #
 ### APR
