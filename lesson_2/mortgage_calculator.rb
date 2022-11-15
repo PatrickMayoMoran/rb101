@@ -55,8 +55,19 @@ MSG
 )
 
 ### Loan Amount
-# Ask for loan amount
+prompt("Let's start with the loan amount.")
 # Show examples of how to enter
+prompt(
+<<-MSG
+Here are some examples:
+172,000
+2,045,000
+54,000
+MSG
+)
+# Ask for loan amount
+prompt("Please enter your loan amount in dollars. Do not enter cents:")
+
 # Check for valid number
 # user confirms this is correct
 #
