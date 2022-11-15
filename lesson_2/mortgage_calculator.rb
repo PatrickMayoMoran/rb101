@@ -41,10 +41,19 @@ loop do
   prompt("Hmm... you didn't enter anything; please enter a name:")
 end
 # Greet user by name
-#
+prompt("Hello #{name}! Let's calculate a mortgage!")
+
 # Start calculator
 # Prompt of information we will ask for
-#
+prompt(
+<<-MSG
+We will need three pieces of information to calculate your mortgage:
+1) loan amount
+2) the Annual Percentage Rate (APR)
+3) the loan duration in years
+MSG
+)
+
 ### Loan Amount
 # Ask for loan amount
 # Show examples of how to enter
