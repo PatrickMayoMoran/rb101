@@ -15,15 +15,31 @@
 # loan_amount * (monthly_interest / (1 - (1 + monthly_interest)**(-loan_duration_months)))
 
 # Helper methods needed
-# def prompt
-# valid_name?
+def prompt(message)
+  Kernel.puts("=> #{message}")
+end
+
+def valid_name?(name)
+  if name.empty? then return false
+  else true
+  end
+end
+
 # valid_number?
 # format_loan_amount
 # loan_string_to_integer
 # move_to_next_calculation?
 #
 # Greet the user and ask for name
+prompt("Hello and welcome to the mortgage calculator! Please enter your name:")
+
 # Validate name input
+name = ''
+loop do
+  name = Kernel.gets().chomp()
+  break if valid_name?(name)
+  prompt("Hmm... you didn't enter anything; please enter a name:")
+end
 # Greet user by name
 #
 # Start calculator
