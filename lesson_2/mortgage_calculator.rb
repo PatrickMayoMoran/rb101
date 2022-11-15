@@ -65,8 +65,11 @@ Here are some examples:
 54,000
 MSG
 )
+
+loan_amount = nil
 # Ask for loan amount
 prompt("Please enter your loan amount in dollars. Do not enter cents:")
+loan_amount = Kernel.gets().chomp()
 
 # Check for valid number
 # user confirms this is correct
