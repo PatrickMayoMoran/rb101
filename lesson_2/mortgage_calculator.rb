@@ -25,7 +25,10 @@ def valid_name?(name)
   end
 end
 
-# valid_number?
+def valid_number?(num)
+  num.to_i.to_s == num
+end
+
 # format_loan_amount
 # loan_string_to_integer
 # move_to_next_calculation?
@@ -68,11 +71,17 @@ MSG
 
 loan_amount = nil
 # Ask for loan amount
-prompt("Please enter your loan amount in dollars. Do not enter cents:")
-loan_amount = Kernel.gets().chomp()
-
-# Check for valid number
-# user confirms this is correct
+loop do
+  prompt("Please enter your loan amount in dollars. Do not enter cents:")
+  loop do
+    loan_amount = Kernel.gets().chomp()
+    no_comma_loan = loan_amount.split(',').join
+    # Check for valid number
+    break if valid_number?(no_comma_loan)
+    prompt("Not a valid number - please enter a valid loan amount:")
+  end
+ # user confirms this is correct
+end
 #
 ### APR
 # Ask for APR as yearly rate
