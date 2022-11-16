@@ -35,8 +35,8 @@ end
 # format_loan_amount
 # loan_string_to_integer
 
-def confirmation?(entry)
-  prompt("You've entered #{entry}. Is this correct?")
+def confirmation?(entry, units)
+  prompt("You've entered #{entry} #{units}. Is this correct?")
   prompt("Type 'yes' to continue; type anything else to reenter loan amount.")
   confirmation = Kernel.gets().chomp()
   return true if confirmation.downcase.start_with?('y')
@@ -90,7 +90,7 @@ loop do
     prompt("Not a valid number - please enter a valid loan amount:")
   end
  # user confirms this is correct
- break if confirmation?(loan_amount)
+ break if confirmation?(loan_amount, "dollars")
 end
 #
 ### APR
@@ -118,7 +118,7 @@ loop do
     prompt("Hmmm... that doesn't look right. Please enter a valid APR")
   end
   # user confirms this is correct
-  break if confirmation?(apr)
+  break if confirmation?(apr, "percent")
 end
 ### Loan Duration
 # Ask for loan duration in years
