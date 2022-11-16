@@ -30,7 +30,7 @@ def valid_integer?(num)
 end
 
 def valid_interest?(num)
-  num.to_f.to_s == num
+  (num.to_f.to_s == num) || valid_integer?(num)
 end
 # format_loan_amount
 # loan_string_to_integer
@@ -58,7 +58,7 @@ prompt("Hello #{name}! Let's calculate a mortgage!")
 # Start calculator
 # Prompt of information we will ask for
 prompt(
-<<-MSG
+<<~MSG
 We will need three pieces of information to calculate your mortgage:
 1) loan amount
 2) the Annual Percentage Rate (APR)
@@ -70,7 +70,7 @@ MSG
 prompt("Let's start with the loan amount.")
 # Show examples of how to enter
 prompt(
-<<-MSG
+<<~MSG
 Here are some examples:
 172,000
 2,045,000
@@ -97,7 +97,7 @@ end
 apr = nil
 loop do
   # Show examples of how to enter
-  prompt(<<-MSG
+  prompt(<<~MSG
   Now we will enter your Annual Percentage Rate (aka an adjusted interest rate)
   Some examples of percentages are:
   1.5%
@@ -107,7 +107,7 @@ loop do
   )
   loop do
     # Ask for APR as yearly rate
-    prompt(<<-MSG
+    prompt(<<~MSG
     Please enter your yearly APR as a whole number:
     For example, type 5 for 5% or 2.5 for 2.5%
     MSG
