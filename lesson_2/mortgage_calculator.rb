@@ -25,10 +25,13 @@ def valid_name?(name)
   end
 end
 
-def valid_number?(num)
+def valid_integer?(num)
   num.to_i.to_s == num
 end
 
+def valid_interest?(num)
+  num.to_f.to_s == num
+end
 # format_loan_amount
 # loan_string_to_integer
 
@@ -83,7 +86,7 @@ loop do
     loan_amount = Kernel.gets().chomp()
     no_comma_loan = loan_amount.split(',').join
     # Check for valid number
-    break if valid_number?(no_comma_loan)
+    break if valid_integer?(no_comma_loan)
     prompt("Not a valid number - please enter a valid loan amount:")
   end
  # user confirms this is correct
@@ -91,11 +94,32 @@ loop do
 end
 #
 ### APR
-# Ask for APR as yearly rate
-# Show examples of how to enter
-# Check for valid input
-# user confirms this is correct
-#
+apr = nil
+loop do
+  # Show examples of how to enter
+  prompt(<<-MSG
+  Now we will enter your Annual Percentage Rate (aka an adjusted interest rate)
+  Some examples of percentages are:
+  1.5%
+  5%
+  7.25%
+  MSG
+  )
+  loop do
+    # Ask for APR as yearly rate
+    prompt(<<-MSG
+    Please enter your yearly APR as a whole number:
+    For example, type 5 for 5% or 2.5 for 2.5%
+    MSG
+    )
+    apr = Kernel.gets().chomp()
+    # Check for valid input
+    break if valid_interest?(apr)
+    prompt("Hmmm... that doesn't look right. Please enter a valid APR")
+  end
+  # user confirms this is correct
+  break if confirmation?(apr)
+end
 ### Loan Duration
 # Ask for loan duration in years
 # Show examples of how to enter
