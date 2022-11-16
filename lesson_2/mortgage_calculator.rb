@@ -16,6 +16,12 @@
 # (1 - (1 + monthly_interest)**(-loan_duration_months)))
 
 # Helper methods needed
+def calculate_payment(loan, apr_months, duration)
+  monthly_payment = loan * (apr_months /
+  (1 - (1 + apr_months)**(-duration)))
+  monthly_payment
+end
+
 def prompt(message)
   Kernel.puts("=> #{message}")
 end
@@ -41,6 +47,12 @@ def confirmation?(entry, units)
   prompt("Type 'yes' to continue; type anything else to reenter.")
   confirmation = Kernel.gets().chomp()
   return true if confirmation.downcase.start_with?('y')
+end
+
+def continue?()
+  prompt("Are you ready to continue?")
+  continue = Kernel.gets().chomp()
+  return true if continue.downcase.start_with?('y')
 end
 #
 # Greet the user and ask for name
@@ -139,10 +151,19 @@ loop do
   end
   # User confirms this is correct
   break if confirmation?(loan_duration, "years")
+
 end
 
 #
 ### Calculating Payment
+# Convert inputs to usable formats
+
+loan_amount_integer = loan_amount.to_i
+monthly_apr = (apr.to_r)/12
+monthly_duration = (loan_duration.to_r) * 12
+payment = calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
+puts payment.to_i
+
 # Tell user we are starting calculation
 # Show each piece of information being added
 # Display each piece of information calculated
