@@ -11,8 +11,9 @@
 #
 # Formula:
 #
-# monthly_payment = 
-# loan_amount * (monthly_interest / (1 - (1 + monthly_interest)**(-loan_duration_months)))
+# monthly_payment =
+# loan_amount * (monthly_interest /
+# (1 - (1 + monthly_interest)**(-loan_duration_months)))
 
 # Helper methods needed
 def prompt(message)
@@ -20,7 +21,7 @@ def prompt(message)
 end
 
 def valid_name?(name)
-  if name.empty? then return false
+  if name.empty? then false
   else true
   end
 end
@@ -57,26 +58,24 @@ prompt("Hello #{name}! Let's calculate a mortgage!")
 
 # Start calculator
 # Prompt of information we will ask for
-prompt(
-<<-MSG
+prompt(<<-MSG
 We will need three pieces of information to calculate your mortgage:
 1) loan amount
 2) the Annual Percentage Rate (APR)
 3) the loan duration in years
 MSG
-)
+      )
 
 ### Loan Amount
 prompt("Let's start with the loan amount.")
 # Show examples of how to enter
-prompt(
-<<-MSG
+prompt(<<-MSG
 Here are some examples:
   172,000
   2,045,000
   54,000
 MSG
-)
+      )
 
 loan_amount = nil
 # Ask for loan amount
@@ -89,8 +88,8 @@ loop do
     break if valid_integer?(no_comma_loan)
     prompt("Not a valid number - please enter a valid loan amount:")
   end
- # user confirms this is correct
- break if confirmation?(loan_amount, "dollars")
+  # user confirms this is correct
+  break if confirmation?(loan_amount, "dollars")
 end
 #
 ### APR
@@ -104,14 +103,14 @@ loop do
   5%
   7.25%
   MSG
-  )
+        )
   loop do
     # Ask for APR as yearly rate
-    prompt(<<-MSG 
+    prompt(<<-MSG
     Please enter your yearly APR as a whole number:
     For example, type 5 for 5% or 2.5 for 2.5%
     MSG
-    )
+          )
     apr = Kernel.gets().chomp()
     # Check for valid input
     break if valid_interest?(apr)
