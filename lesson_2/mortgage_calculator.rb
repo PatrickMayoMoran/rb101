@@ -49,7 +49,7 @@ def confirmation?(entry, units)
   return true if confirmation.downcase.start_with?('y')
 end
 
-def continue?()
+def continue?
   prompt("Are you ready to continue?")
   continue = Kernel.gets().chomp()
   return true if continue.downcase.start_with?('y')
@@ -63,7 +63,7 @@ We will need three pieces of information to calculate your mortgage:
     3) the loan duration in years
 MSG
 
-amount_examples = <<-MSG 
+amount_examples = <<-MSG
 Here are some examples:
     172,000
     2,045,000
@@ -161,15 +161,13 @@ loop do
   end
   # User confirms this is correct
   break if confirmation?(loan_duration, "years")
-
 end
 
-#
 ### Calculating Payment
 # Convert inputs to usable formats
 
 loan_amount_integer = loan_amount.to_i
-monthly_apr = (apr.to_r)/1200
+monthly_apr = (apr.to_r) / 1200
 monthly_duration = (loan_duration.to_r) * 12
 payment = calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
 puts payment.to_i
