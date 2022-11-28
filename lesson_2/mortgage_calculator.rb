@@ -1,21 +1,4 @@
-# Assignment
-# Create a mortgage loan calculator that asks for:
-# 1) the loan amount
-# 2) the Annual Percentage Rate (APR)
-# 3) the loan duration
-#
-# With these pieces of information, calculate and share:
-# 1) the monthly interest rate
-# 2) loan duration in months
-# 3) monthly payment
-#
-# Formula:
-#
-# monthly_payment =
-# loan_amount * (monthly_interest /
-# (1 - (1 + monthly_interest)**(-loan_duration_months)))
-
-# Helper methods needed
+# Helper methods
 def calculate_payment(loan, apr_months, duration)
   monthly_payment = loan * (apr_months /
   (1 - (1 + apr_months)**(-duration)))
@@ -39,8 +22,6 @@ end
 def valid_interest?(num)
   (num.to_f.to_s == num) || valid_integer?(num)
 end
-# format_loan_amount
-# loan_string_to_integer
 
 def confirmation?(entry, units)
   prompt("You've entered #{entry} #{units}. Is this correct?")
@@ -123,7 +104,7 @@ loop do
   delay_prompt("Let's start with the loan amount", 5)
   # Show examples of how to enter
   prompt(amount_examples)
-  
+
   loan_amount = nil
   # Ask for loan amount
   loop do
@@ -138,13 +119,13 @@ loop do
     # user confirms this is correct
     break if confirmation?(loan_amount, "dollars")
   end
-  #
+
   ### APR
   apr = nil
   loop do
     # Show examples of how to enter
     prompt(apr_examples)
-  
+
     loop do
       # Ask for APR as yearly rate
       prompt(apr_instruction)
@@ -156,7 +137,7 @@ loop do
     # user confirms this is correct
     break if confirmation?(apr, "percent")
   end
-  
+
   ### Loan Duration
   loan_duration = nil
   loop do
@@ -173,14 +154,14 @@ loop do
     # User confirms this is correct
     break if confirmation?(loan_duration, "years")
   end
-  
+
   ### Calculating Payment
   # Convert inputs to usable formats
-  
+
   loan_amount_integer = loan_amount.to_i
   monthly_apr = (apr.to_r) / 1200
   monthly_duration = (loan_duration.to_r) * 12
-  
+
   # Tell user we are starting calculation
   delay_prompt("Starting calculation", 3)
   # Show each piece of information being added
@@ -188,7 +169,8 @@ loop do
   delay_prompt("And #{monthly_duration.to_i} monthly payments", 3)
   delay_prompt("And an APR of #{apr}%", 3)
   # Calculate payment
-  payment = calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
+  payment =
+    calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
   payment_formatted = payment.to_f.truncate(2)
   # Display payment amount
   delay_prompt("We get a final monthly payment of", 3)
@@ -200,4 +182,3 @@ loop do
 end
 # Thank user for calculating
 prompt("Thanks for using the calculator; goodbye!")
-
