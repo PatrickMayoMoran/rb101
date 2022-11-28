@@ -44,13 +44,13 @@ end
 
 def confirmation?(entry, units)
   prompt("You've entered #{entry} #{units}. Is this correct?")
-  prompt("Type 'yes' to continue; type anything else to reenter.")
+  prompt("Type yes to continue; type anything else to reenter.")
   confirmation = Kernel.gets().chomp()
   return true if confirmation.downcase.start_with?('y')
 end
 
 def again?
-  prompt("Type 'yes' to calculate again; type anything else to quit.")
+  prompt("Type yes to calculate again; type anything else to quit.")
   continue = Kernel.gets().chomp()
   return true if continue.downcase.start_with?('y')
 end
