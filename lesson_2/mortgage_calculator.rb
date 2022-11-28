@@ -55,6 +55,12 @@ def continue?
   return true if continue.downcase.start_with?('y')
 end
 
+def delay_prompt(msg)
+  print(msg)
+  3.times { sleep(1); print('.') }
+  print("\n")
+end
+
 # Messages
 introduction = <<-MSG
 We will need three pieces of information to calculate your mortgage:
@@ -169,16 +175,16 @@ end
 loan_amount_integer = loan_amount.to_i
 monthly_apr = (apr.to_r) / 1200
 monthly_duration = (loan_duration.to_r) * 12
-payment = calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
-puts payment.to_i
 
 # Tell user we are starting calculation
+prompt("Starting calculation...")
 # Show each piece of information being added
 # Display each piece of information calculated
 # -- monthly payment
 # -- loan duration in months
 # -- monthly interest rate
-#
+# Calculate payment
+payment = calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
 ### End or redo
 # Thank user for calculating
 # Ask if they want to calculate again
