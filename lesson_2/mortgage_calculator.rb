@@ -16,11 +16,11 @@ def valid_name?(name)
 end
 
 def valid_integer?(num)
-  num.to_i.to_s == num
+  (num.to_i().to_s() == num) && (num.to_f() > 0)
 end
 
 def valid_interest?(num)
-  (num.to_f.to_s == num) || valid_integer?(num)
+  (num.to_f().to_s() == num) || valid_integer?(num)
 end
 
 def confirmation?(entry, units)
@@ -99,9 +99,10 @@ prompt("Hello #{name}! Let's calculate a mortgage!")
 prompt(introduction)
 
 # Large loop for entire calculation
+delay_prompt("Here we go", 5)
 loop do
   ### Loan Amount
-  delay_prompt("Let's start with the loan amount", 5)
+  prompt("Let's start with the loan amount", 5)
   # Show examples of how to enter
   prompt(amount_examples)
 
