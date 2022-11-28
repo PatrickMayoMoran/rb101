@@ -55,9 +55,9 @@ def again?
   return true if continue.downcase.start_with?('y')
 end
 
-def delay_prompt(msg)
+def delay_prompt(msg, t)
   print(msg)
-  3.times do
+  t.times do
     sleep(1)
     print('.')
   end
@@ -120,7 +120,7 @@ prompt(introduction)
 # Large loop for entire calculation
 loop do
   ### Loan Amount
-  delay_prompt("Let's start with the loan amount")
+  delay_prompt("Let's start with the loan amount", 5)
   # Show examples of how to enter
   prompt(amount_examples)
   
@@ -182,16 +182,16 @@ loop do
   monthly_duration = (loan_duration.to_r) * 12
   
   # Tell user we are starting calculation
-  delay_prompt("Starting calculation")
+  delay_prompt("Starting calculation", 3)
   # Show each piece of information being added
-  delay_prompt("With a loan amount of $#{loan_amount}")
-  delay_prompt("And #{monthly_duration.to_i} monthly payments")
-  delay_prompt("And an APR of #{apr}%")
+  delay_prompt("With a loan amount of $#{loan_amount}", 3)
+  delay_prompt("And #{monthly_duration.to_i} monthly payments", 3)
+  delay_prompt("And an APR of #{apr}%", 3)
   # Calculate payment
   payment = calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
   payment_formatted = payment.to_f.truncate(2)
   # Display payment amount
-  delay_prompt("We get a final monthly payment of")
+  delay_prompt("We get a final monthly payment of", 3)
   prompt("$#{payment_formatted}")
   sleep(3)
   ### End or redo
