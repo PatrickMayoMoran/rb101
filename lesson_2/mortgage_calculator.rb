@@ -70,6 +70,27 @@ Here are some examples:
     54,000
 MSG
 
+apr_examples = <<-MSG
+Now we will enter your Annual Percentage Rate (APR)
+    Some examples of APR are:
+    1.5%
+    5%
+    7.25%
+MSG
+
+apr_instruction = <<-MSG
+Please enter your yearly APR as a number without the percentage sign:
+    For example, type 5 for 5% or 2.5 for 2.5%
+MSG
+
+term_examples = <<-MSG
+Some examples are:
+    10
+    15
+    30
+    Your loan length in years:")
+MSG
+
 # Greet the user and ask for name
 prompt("Hello and welcome to the mortgage calculator! Please enter your name:")
 
@@ -111,21 +132,11 @@ end
 apr = nil
 loop do
   # Show examples of how to enter
-  prompt(<<-MSG
-  Now we will enter your Annual Percentage Rate (aka an adjusted interest rate)
-  Some examples of percentages are:
-  1.5%
-  5%
-  7.25%
-  MSG
-        )
+  prompt(apr_examples)
+
   loop do
     # Ask for APR as yearly rate
-    prompt(<<-MSG
-    Please enter your yearly APR as a whole number:
-    For example, type 5 for 5% or 2.5 for 2.5%
-    MSG
-          )
+    prompt(apr_instruction)
     apr = Kernel.gets().chomp()
     # Check for valid input
     break if valid_interest?(apr)
@@ -141,11 +152,7 @@ loop do
   # Ask for loan duration in years
   prompt("Now you will enter the length of your loan term in years")
   # Show examples of how to enter
-  prompt("Some examples are:
-    10
-    15
-    30
-    Your loan length in years:")
+  prompt(term_examples)
   # Check for valid input
   loop do
     loan_duration = Kernel.gets().chomp()
