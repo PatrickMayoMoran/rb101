@@ -23,7 +23,7 @@ def calculate_payment(loan, apr_months, duration)
 end
 
 def prompt(message)
-  Kernel.puts("=> #{message}")
+  Kernel.puts("=>  #{message}")
 end
 
 def valid_name?(name)
