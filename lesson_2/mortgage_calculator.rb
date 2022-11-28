@@ -57,7 +57,10 @@ end
 
 def delay_prompt(msg)
   print(msg)
-  3.times { sleep(1); print('.') }
+  3.times do
+    sleep(1)
+    print('.')
+  end
   print("\n")
 end
 
@@ -94,7 +97,7 @@ Some examples are:
     10
     15
     30
-    Your loan length in years:")
+    Your loan length in years:
 MSG
 
 # Greet the user and ask for name
