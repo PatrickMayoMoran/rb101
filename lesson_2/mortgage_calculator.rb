@@ -49,8 +49,8 @@ def confirmation?(entry, units)
   return true if confirmation.downcase.start_with?('y')
 end
 
-def continue?
-  prompt("Are you ready to continue?")
+def again?
+  prompt("Type 'yes' to calculate again; type anything else to quit.")
   continue = Kernel.gets().chomp()
   return true if continue.downcase.start_with?('y')
 end
@@ -110,90 +110,94 @@ loop do
   break if valid_name?(name)
   prompt("Hmm... you didn't enter anything; please enter a name:")
 end
+
 # Greet user by name
 prompt("Hello #{name}! Let's calculate a mortgage!")
 
-# Start calculator
 # Prompt of information we will ask for
 prompt(introduction)
 
-### Loan Amount
-delay_prompt("Let's start with the loan amount")
-# Show examples of how to enter
-prompt(amount_examples)
-
-loan_amount = nil
-# Ask for loan amount
+# Large loop for entire calculation
 loop do
-  prompt("Please enter your loan amount in dollars. Do not enter cents:")
-  loop do
-    loan_amount = Kernel.gets().chomp()
-    no_comma_loan = loan_amount.split(',').join
-    # Check for valid number
-    break if valid_integer?(no_comma_loan)
-    prompt("Not a valid number - please enter a valid loan amount:")
-  end
-  # user confirms this is correct
-  break if confirmation?(loan_amount, "dollars")
-end
-#
-### APR
-apr = nil
-loop do
+  ### Loan Amount
+  delay_prompt("Let's start with the loan amount")
   # Show examples of how to enter
-  prompt(apr_examples)
-
+  prompt(amount_examples)
+  
+  loan_amount = nil
+  # Ask for loan amount
   loop do
-    # Ask for APR as yearly rate
-    prompt(apr_instruction)
-    apr = Kernel.gets().chomp()
+    prompt("Please enter your loan amount in dollars. Do not enter cents:")
+    loop do
+      loan_amount = Kernel.gets().chomp()
+      no_comma_loan = loan_amount.split(',').join
+      # Check for valid number
+      break if valid_integer?(no_comma_loan)
+      prompt("Not a valid number - please enter a valid loan amount:")
+    end
+    # user confirms this is correct
+    break if confirmation?(loan_amount, "dollars")
+  end
+  #
+  ### APR
+  apr = nil
+  loop do
+    # Show examples of how to enter
+    prompt(apr_examples)
+  
+    loop do
+      # Ask for APR as yearly rate
+      prompt(apr_instruction)
+      apr = Kernel.gets().chomp()
+      # Check for valid input
+      break if valid_interest?(apr)
+      prompt("Hmmm... that doesn't look right. Please enter a valid APR")
+    end
+    # user confirms this is correct
+    break if confirmation?(apr, "percent")
+  end
+  
+  ### Loan Duration
+  loan_duration = nil
+  loop do
+    # Ask for loan duration in years
+    prompt("Now you will enter the length of your loan term in years")
+    # Show examples of how to enter
+    prompt(term_examples)
     # Check for valid input
-    break if valid_interest?(apr)
-    prompt("Hmmm... that doesn't look right. Please enter a valid APR")
+    loop do
+      loan_duration = Kernel.gets().chomp()
+      break if valid_integer?(loan_duration)
+      prompt("Hmmm... that doesn't look right. Please enter a valid number")
+    end
+    # User confirms this is correct
+    break if confirmation?(loan_duration, "years")
   end
-  # user confirms this is correct
-  break if confirmation?(apr, "percent")
+  
+  ### Calculating Payment
+  # Convert inputs to usable formats
+  
+  loan_amount_integer = loan_amount.to_i
+  monthly_apr = (apr.to_r) / 1200
+  monthly_duration = (loan_duration.to_r) * 12
+  
+  # Tell user we are starting calculation
+  delay_prompt("Starting calculation")
+  # Show each piece of information being added
+  delay_prompt("With a loan amount of $#{loan_amount}")
+  delay_prompt("And #{monthly_duration.to_i} monthly payments")
+  delay_prompt("And an APR of #{apr}%")
+  # Calculate payment
+  payment = calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
+  payment_formatted = payment.to_f.truncate(2)
+  # Display payment amount
+  delay_prompt("We get a final monthly payment of")
+  prompt("$#{payment_formatted}")
+  sleep(3)
+  ### End or redo
+  prompt("Would you like to calculate another mortgage?")
+  break unless again?
 end
-
-### Loan Duration
-loan_duration = nil
-loop do
-  # Ask for loan duration in years
-  prompt("Now you will enter the length of your loan term in years")
-  # Show examples of how to enter
-  prompt(term_examples)
-  # Check for valid input
-  loop do
-    loan_duration = Kernel.gets().chomp()
-    break if valid_integer?(loan_duration)
-    prompt("Hmmm... that doesn't look right. Please enter a valid number")
-  end
-  # User confirms this is correct
-  break if confirmation?(loan_duration, "years")
-end
-
-### Calculating Payment
-# Convert inputs to usable formats
-
-loan_amount_integer = loan_amount.to_i
-monthly_apr = (apr.to_r) / 1200
-monthly_duration = (loan_duration.to_r) * 12
-
-# Tell user we are starting calculation
-delay_prompt("Starting calculation")
-# Show each piece of information being added
-delay_prompt("With a loan amount of $#{loan_amount}")
-delay_prompt("And #{monthly_duration.to_i} monthly payments")
-delay_prompt("And an APR of #{apr}%")
-# Calculate payment
-payment = calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
-payment_formatted = payment.to_f.truncate(2)
-# Display payment amount
-delay_prompt("We get a final monthly payment of")
-prompt("$#{payment_formatted}")
-### End or redo
 # Thank user for calculating
-# Ask if they want to calculate again
-#
-### Farewell
-# Auf wiedersehen!
+prompt("Thanks for using the calculator; goodbye!")
+
