@@ -159,7 +159,7 @@ end
 # Convert inputs to usable formats
 
 loan_amount_integer = loan_amount.to_i
-monthly_apr = (apr.to_r)/12
+monthly_apr = (apr.to_r)/1200
 monthly_duration = (loan_duration.to_r) * 12
 payment = calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
 puts payment.to_i
