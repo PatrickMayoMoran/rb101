@@ -54,7 +54,22 @@ def continue?()
   continue = Kernel.gets().chomp()
   return true if continue.downcase.start_with?('y')
 end
-#
+
+# Messages
+introduction = <<-MSG
+We will need three pieces of information to calculate your mortgage:
+    1) loan amount
+    2) the Annual Percentage Rate (APR)
+    3) the loan duration in years
+MSG
+
+amount_examples = <<-MSG 
+Here are some examples:
+    172,000
+    2,045,000
+    54,000
+MSG
+
 # Greet the user and ask for name
 prompt("Hello and welcome to the mortgage calculator! Please enter your name:")
 
@@ -70,24 +85,12 @@ prompt("Hello #{name}! Let's calculate a mortgage!")
 
 # Start calculator
 # Prompt of information we will ask for
-prompt(<<-MSG
-We will need three pieces of information to calculate your mortgage:
-1) loan amount
-2) the Annual Percentage Rate (APR)
-3) the loan duration in years
-MSG
-      )
+prompt(introduction)
 
 ### Loan Amount
 prompt("Let's start with the loan amount.")
 # Show examples of how to enter
-prompt(<<-MSG
-Here are some examples:
-  172,000
-  2,045,000
-  54,000
-MSG
-      )
+prompt(amount_examples)
 
 loan_amount = nil
 # Ask for loan amount
