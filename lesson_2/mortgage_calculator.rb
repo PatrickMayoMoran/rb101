@@ -115,7 +115,7 @@ prompt("Hello #{name}! Let's calculate a mortgage!")
 prompt(introduction)
 
 ### Loan Amount
-prompt("Let's start with the loan amount.")
+delay_prompt("Let's start with the loan amount")
 # Show examples of how to enter
 prompt(amount_examples)
 
@@ -177,14 +177,17 @@ monthly_apr = (apr.to_r) / 1200
 monthly_duration = (loan_duration.to_r) * 12
 
 # Tell user we are starting calculation
-prompt("Starting calculation...")
+delay_prompt("Starting calculation")
 # Show each piece of information being added
-# Display each piece of information calculated
-# -- monthly payment
-# -- loan duration in months
-# -- monthly interest rate
+delay_prompt("With a loan amount of $#{loan_amount}")
+delay_prompt("And #{monthly_duration.to_i} monthly payments")
+delay_prompt("And an APR of #{apr}%")
 # Calculate payment
 payment = calculate_payment(loan_amount_integer, monthly_apr, monthly_duration)
+payment_formatted = payment.to_f.truncate(2)
+# Display payment amount
+delay_prompt("We get a final monthly payment of")
+prompt("$#{payment_formatted}")
 ### End or redo
 # Thank user for calculating
 # Ask if they want to calculate again
