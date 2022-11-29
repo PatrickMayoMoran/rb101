@@ -102,7 +102,7 @@ prompt(introduction)
 delay_prompt("Here we go", 5)
 loop do
   ### Loan Amount
-  prompt("Let's start with the loan amount", 5)
+  prompt("Let's start with the loan amount")
   # Show examples of how to enter
   prompt(amount_examples)
 
