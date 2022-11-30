@@ -82,6 +82,7 @@ Some examples are:
 MSG
 
 # Greet the user and ask for name
+system('cls') || system('clear')
 prompt("Hello and welcome to the mortgage calculator! Please enter your name:")
 
 # Validate name input
