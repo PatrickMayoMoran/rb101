@@ -10,7 +10,7 @@ def prompt(message)
 end
 
 def valid_name?(name)
-  if name.empty? then false
+  if name.strip.empty? then false
   else true
   end
 end
