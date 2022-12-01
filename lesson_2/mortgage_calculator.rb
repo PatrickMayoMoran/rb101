@@ -165,7 +165,6 @@ loop do
 
   ### Calculating Payment
   # Convert inputs to usable formats
-
   loan_amount_integer = loan_amount.to_i
   monthly_apr = (apr.to_r) / 1200
   monthly_duration = (loan_duration.to_r) * 12
