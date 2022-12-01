@@ -53,6 +53,23 @@ def get_name()
   end
 end
 
+def get_loan_amount()
+  loan_amount = nil
+  loop do
+    prompt("Please enter your loan amount in dollars. Do not enter cents:")
+    loop do
+      loan_amount = Kernel.gets().chomp()
+      no_comma_loan = loan_amount.split(',').join
+      # Check for valid number
+      break if valid_integer?(no_comma_loan)
+      prompt("Not a valid number - please enter a valid loan amount:")
+    end
+    # user confirms this is correct
+    break if confirmation?(loan_amount, "dollars")
+  end
+  loan_amount
+end
+
 # Messages
 introduction = <<-MSG
 We will need three pieces of information to calculate your mortgage:
@@ -93,13 +110,10 @@ MSG
 system('cls') || system('clear')
 prompt("Hello and welcome to the mortgage calculator! Please enter your name:")
 
-# Validate name input
-name = get_name()
-
 # Greet user by name
+name = get_name()
 prompt("Hello #{name}! Let's calculate a mortgage!")
 
-# Prompt of information we will ask for
 prompt(introduction)
 
 # Large loop for entire calculation
@@ -107,23 +121,9 @@ delay_prompt("Here we go", 5)
 loop do
   ### Loan Amount
   prompt("Let's start with the loan amount")
-  # Show examples of how to enter
   prompt(amount_examples)
-
-  loan_amount = nil
   # Ask for loan amount
-  loop do
-    prompt("Please enter your loan amount in dollars. Do not enter cents:")
-    loop do
-      loan_amount = Kernel.gets().chomp()
-      no_comma_loan = loan_amount.split(',').join
-      # Check for valid number
-      break if valid_integer?(no_comma_loan)
-      prompt("Not a valid number - please enter a valid loan amount:")
-    end
-    # user confirms this is correct
-    break if confirmation?(loan_amount, "dollars")
-  end
+  loan_amount = get_loan_amount()
 
   ### APR
   apr = nil
