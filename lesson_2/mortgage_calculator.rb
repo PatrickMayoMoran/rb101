@@ -70,6 +70,43 @@ def get_loan_amount()
   loan_amount
 end
 
+def get_apr()
+  apr = nil
+  loop do
+    # Show examples of how to enter
+    prompt(apr_examples)
+
+    loop do
+      # Ask for APR as yearly rate
+      prompt(apr_instruction)
+      apr = Kernel.gets().chomp()
+      # Check for valid input
+      break if valid_interest?(apr)
+      prompt("Hmmm... that doesn't look right. Please enter a valid APR")
+    end
+    # user confirms this is correct
+    break if confirmation?(apr, "percent")
+  end
+  apr
+end
+
+def get_duration()
+  loan_duration = nil
+  loop do
+    prompt("Now you will enter the length of your loan term in years")
+    prompt(term_examples)
+    # Check for valid input
+    loop do
+      loan_duration = Kernel.gets().chomp()
+      break if valid_integer?(loan_duration)
+      prompt("Hmmm... that doesn't look right. Please enter a valid number")
+    end
+    # User confirms this is correct
+    break if confirmation?(loan_duration, "years")
+  end
+  loan_duration
+end
+
 # Messages
 introduction = <<-MSG
 We will need three pieces of information to calculate your mortgage:
@@ -122,43 +159,13 @@ loop do
   ### Loan Amount
   prompt("Let's start with the loan amount")
   prompt(amount_examples)
-  # Ask for loan amount
   loan_amount = get_loan_amount()
 
   ### APR
-  apr = nil
-  loop do
-    # Show examples of how to enter
-    prompt(apr_examples)
-
-    loop do
-      # Ask for APR as yearly rate
-      prompt(apr_instruction)
-      apr = Kernel.gets().chomp()
-      # Check for valid input
-      break if valid_interest?(apr)
-      prompt("Hmmm... that doesn't look right. Please enter a valid APR")
-    end
-    # user confirms this is correct
-    break if confirmation?(apr, "percent")
-  end
+  apr = get_apr()
 
   ### Loan Duration
-  loan_duration = nil
-  loop do
-    # Ask for loan duration in years
-    prompt("Now you will enter the length of your loan term in years")
-    # Show examples of how to enter
-    prompt(term_examples)
-    # Check for valid input
-    loop do
-      loan_duration = Kernel.gets().chomp()
-      break if valid_integer?(loan_duration)
-      prompt("Hmmm... that doesn't look right. Please enter a valid number")
-    end
-    # User confirms this is correct
-    break if confirmation?(loan_duration, "years")
-  end
+  loan_duration = get_duration()
 
   ### Calculating Payment
   # Convert inputs to usable formats
