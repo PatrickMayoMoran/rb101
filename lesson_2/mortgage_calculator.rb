@@ -45,6 +45,14 @@ def delay_prompt(msg, t)
   print("\n")
 end
 
+def get_name()
+  loop do
+    name = Kernel.gets().chomp()
+    break if valid_name?(name)
+    prompt("Hmm... you didn't enter anything; please enter a name:")
+  end
+end
+
 # Messages
 introduction = <<-MSG
 We will need three pieces of information to calculate your mortgage:
@@ -86,12 +94,7 @@ system('cls') || system('clear')
 prompt("Hello and welcome to the mortgage calculator! Please enter your name:")
 
 # Validate name input
-name = ''
-loop do
-  name = Kernel.gets().chomp()
-  break if valid_name?(name)
-  prompt("Hmm... you didn't enter anything; please enter a name:")
-end
+name = get_name()
 
 # Greet user by name
 prompt("Hello #{name}! Let's calculate a mortgage!")
