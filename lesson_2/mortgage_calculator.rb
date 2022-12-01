@@ -70,7 +70,7 @@ def get_loan_amount()
   loan_amount
 end
 
-def get_apr()
+def get_apr(apr_examples, apr_instructions)
   apr = nil
   loop do
     # Show examples of how to enter
@@ -78,7 +78,7 @@ def get_apr()
 
     loop do
       # Ask for APR as yearly rate
-      prompt(apr_instruction)
+      prompt(apr_instructions)
       apr = Kernel.gets().chomp()
       # Check for valid input
       break if valid_interest?(apr)
@@ -90,7 +90,7 @@ def get_apr()
   apr
 end
 
-def get_duration()
+def get_duration(term_examples)
   loan_duration = nil
   loop do
     prompt("Now you will enter the length of your loan term in years")
@@ -130,7 +130,7 @@ Now we will enter your Annual Percentage Rate (APR)
     7.25%
 MSG
 
-apr_instruction = <<-MSG
+apr_instructions = <<-MSG
 Please enter your yearly APR as a number without the percentage sign:
     For example, type 5 for 5% or 2.5 for 2.5%
 MSG
@@ -156,16 +156,12 @@ prompt(introduction)
 # Large loop for entire calculation
 delay_prompt("Here we go", 5)
 loop do
-  ### Loan Amount
+  ### Get inputs
   prompt("Let's start with the loan amount")
   prompt(amount_examples)
   loan_amount = get_loan_amount()
-
-  ### APR
-  apr = get_apr()
-
-  ### Loan Duration
-  loan_duration = get_duration()
+  apr = get_apr(apr_examples, apr_instructions)
+  loan_duration = get_duration(term_examples)
 
   ### Calculating Payment
   # Convert inputs to usable formats
