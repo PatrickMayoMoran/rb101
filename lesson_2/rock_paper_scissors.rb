@@ -26,10 +26,19 @@ def display_results(player, computer)
   end
 end
 
+choice_message = <<-MSG
+Type r for rock
+    Type s for scissors
+    Type p for paper
+    Type l for lizard
+    Type k for spock
+MSG
+
 loop do
   choice = nil
   loop do
     prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+    prompt(choice_message)
     choice = Kernel.gets().chomp()
 
     if VALID_CHOICES.include?(choice)
