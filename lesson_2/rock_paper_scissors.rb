@@ -1,4 +1,4 @@
-VALID_CHOICES = %w(rock paper scissors)
+VALID_CHOICES = %w(rock paper scissors lizard spock)
 
 CHOICES = {
   rock: [:scissors, :lizard],
@@ -13,15 +13,13 @@ def prompt(message)
 end
 
 def win?(first, second)
-  (first == 'rock' && second == 'scissors') ||
-    (first == 'scissors' && second == 'paper') ||
-    (first == 'paper' && second == 'rock')
+  CHOICES[first].include?(second)
 end
 
 def display_results(player, computer)
-  if win?(player, computer)
+  if win?(player.to_sym, computer.to_sym)
     prompt("You won!")
-  elsif win?(computer, player)
+  elsif win?(computer.to_sym, player.to_sym)
     prompt("Computer won!")
   else
     prompt("It's a draw!")
