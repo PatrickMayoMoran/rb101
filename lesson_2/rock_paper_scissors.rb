@@ -42,6 +42,7 @@ Type r for rock
     Type k for spock
 MSG
 
+prompt("Let's play rock, paper, scissors, spock, lizard! First to 3 wins!"
 loop do
   choice = nil
   loop do
