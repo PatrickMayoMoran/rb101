@@ -1,5 +1,13 @@
 VALID_CHOICES = %w(rock paper scissors)
 
+CHOICES = {
+  rock: [:scissors, :lizard],
+  paper: [:rock, :spock],
+  scissors: [:paper, :lizard],
+  spock: [:rock, :scissors],
+  lizard: [:paper, :spock]
+}
+
 def prompt(message)
   Kernel.puts("=>  #{message}")
 end
