@@ -8,6 +8,14 @@ CHOICES = {
   lizard: [:paper, :spock]
 }
 
+ABBREVIATIONS = {
+  'r' => :rock,
+  's' => :scissors,
+  'p' => :paper,
+  'l' => :lizard,
+  'k' => :spock
+}
+
 def prompt(message)
   Kernel.puts("=>  #{message}")
 end
@@ -41,7 +49,8 @@ loop do
     prompt(choice_message)
     choice = Kernel.gets().chomp()
 
-    if VALID_CHOICES.include?(choice)
+    if ABBREVIATIONS.keys.include?(choice)
+      choice = ABBREVIATIONS[choice]
       break
     else
       prompt("That's not a valid choice")
@@ -50,7 +59,7 @@ loop do
 
   computer_choice = VALID_CHOICES.sample
 
-  prompt("You chose #{choice}; computer chose #{computer_choice}")
+  prompt("You chose #{choice.to_s}; computer chose #{computer_choice}")
   display_results(choice, computer_choice)
 
   prompt("do you want to play again?")
