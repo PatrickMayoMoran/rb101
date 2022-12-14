@@ -1,0 +1,35 @@
+Describe the difference between ! and ? in Ruby. And explain what would happen
+in the following scenarios:
+
+what is != and where should you use it?
+  This means 'not equals' and is used as a comparison operator
+  Can be used in if statements, while, break conditions, etc.
+
+put ! before something, like !user_name
+  This is the unary operator (or bang operator) which returns the opposite
+  boolean value of the objects truthiness. This can be used to convert an
+  object into its opposite boolean value
+
+put ! after something, like words.uniq!
+  Putting the bang symbol at the end of something does not do anything
+  in and of itself. Instead, it is a semantic marker meaning "dangerous!"
+  Often it is used to indicate that the method is destructive or has some
+  other behavior you should watch out for. However, there are destructive 
+  methods that don't use the bang operator and there are many different ways
+  a method can be destructive, so documentation should be consulted when you
+  see the ! at the end of a method.
+
+put ? before something
+  Putting the ? before something is usually part of the ternary operator
+  where you test the truthiness of the first expression, return the second
+  expression if true and the third if false
+  Example: "Strings evaluate as truthy" ? true : false
+
+put ? after something
+  Putting ? after something is a convention used to indicate that the method
+  returns a boolean value
+
+put !! before something, like !!user_name
+  A double bang before something converts the object into its equivalent
+  boolean value. So !!"string with stuff" == true
+
