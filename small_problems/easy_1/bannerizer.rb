@@ -1,5 +1,6 @@
 # PROBLEM
 # Write a method that takes a short line and prints it in a box
+# EXTENSION: for long strings, wrap them so they are in the center of the box
 #
 # INPUT: string
 # OUTPUT: string
@@ -28,19 +29,19 @@
 #     is empty
 #
 # ALGORITHM
-#   initialize an array with number of box lines
-#   Make box top line
-#     initialize to default top
-#     add dashes the size of given string into middle
-#   Make box first line
-#     initialize to default filler
-#     add spaces the size of given string into middle
-#   Make box second line with string
-#     initialize to default filler
-#     add string to middle
-#   make box third line
-#   make box fourth line
-#   print box
+#   IF string size is less than or equal to 76,
+#     initialize horiztonal rule with string size + 2 of padding
+#     initialize empty ling with string size + 2 padding
+#   ELSIF string size is more than 76
+#     initialize horizontal rule with 78 padding
+#     initiliaze empty line with 78 spaces
+#   END
+#   determine how many lines we have to print
+#     initialize number of lines to string length / 76 + 1
+#   iterate through each multiple and create that line
+#     use index times 76 as starting point of slice
+#     Slice 76 characters from there
+#     print line for box with that slice
 # 
 # HELPER METHODS
 # make line with border, filler, insert
@@ -83,7 +84,21 @@ def print_in_box(message)
 
   puts horizontal
   puts empty_line
-  puts "| #{message[0,76]} |"
+
+  number_of_lines = message.size / 76 + 1
+  if number_of_lines > 1
+    start = 0
+    number_of_lines.times do |index|
+      start = index * 76
+      break if index == number_of_lines - 1
+      puts "| #{message[start, 76]} |"
+    end
+    last_line = message[start,76]
+    puts "| #{last_line}#{' ' * (76 - last_line.size)} |"
+  else
+    puts "| #{message} |"
+  end
+
   puts empty_line
   puts horizontal
 end
@@ -91,3 +106,4 @@ end
 print_in_box('To boldly go where no one has gone before.')
 print_in_box('To boldly go where no one has gone before. But this one is longer!!! More than 80 long in fact!')
 print_in_box('')
+print_in_box('This is an example of a super long string that will need to be split over multiple lines. It starts in the trees and ends in the spoons! If you\'re not chopping wood, you\'re buying wood and wood is very, very expensive, so get chopping! Those fires don\'t burn themselves. My maaaaaaaaan. Love it! TV is the future.')
