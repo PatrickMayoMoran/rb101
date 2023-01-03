@@ -34,6 +34,21 @@
 #     if count == given integer, break out of loop
 #   return integer
 #
+# EXTENSION
+# GOAL
+#   Given an integer and a starting number, return a string of alternating
+#   1's and 0's that starts with starting number and is the size of integer
+#
+# ALGORITHM
+#   initialize empty array
+#   initialize second number to be 0 if start is 1 and 1 if start is 0
+#   begin loop the size of given integer
+#     if loop index is 0, append starting number to array
+#     otherwise append other number
+#   end loop
+#
+#   return the array joined to be a string
+#
 def stringy(integer)
   string = ''
   count = 0
@@ -48,9 +63,10 @@ end
 
 def stringy_2(size, start=1)
   numbers = []
+  other = start == 1 ? 0 : 1
 
   size.times do |index|
-    number = index.even? ? 1 : 0
+    number = index.even? ? start : other
     numbers << number
   end
 
@@ -62,7 +78,7 @@ puts stringy(9) == '101010101'
 puts stringy(4) == '1010'
 puts stringy(7) == '1010101'
 
-puts stringy_2(6) == '101010'
-puts stringy_2(9) == '101010101'
-puts stringy_2(4) == '1010'
-puts stringy_2(7) == '1010101'
+puts stringy_2(6,1) == '101010'
+puts stringy_2(9,0) == '010101010'
+puts stringy_2(4,1) == '1010'
+puts stringy_2(7,0) == '0101010'
