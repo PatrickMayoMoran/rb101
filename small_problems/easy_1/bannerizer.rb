@@ -54,34 +54,40 @@ def make_line(border, filler, length=2)
   line.insert(1, filler * length)
 end
 
-def print_in_box(str)
-  length = str.length
-  box = Array.new(5)
-  box[0] = make_line(CORNER, TOP_BOTTOM)
-  box[1] = make_line(SIDE, ' ')
-  box[2] = make_line(SIDE, ' ')
-  box[3] = make_line(SIDE, ' ')
-  box[4] = make_line(CORNER, TOP_BOTTOM)
-
-  box[0].insert(2, TOP_BOTTOM * length)
-  box[1].insert(2, ' ' * length)
-  box[2].insert(2, str)
-  box[3].insert(2, ' ' * length)
-  box[4].insert(2, TOP_BOTTOM * length)
-  p box
-  puts box
-end
+# def print_in_box(str)
+#   length = str.length
+#   box = Array.new(5)
+#   box[0] = make_line(CORNER, TOP_BOTTOM)
+#   box[1] = make_line(SIDE, ' ')
+#   box[2] = make_line(SIDE, ' ')
+#   box[3] = make_line(SIDE, ' ')
+#   box[4] = make_line(CORNER, TOP_BOTTOM)
+# 
+#   box[0].insert(2, TOP_BOTTOM * length)
+#   box[1].insert(2, ' ' * length)
+#   box[2].insert(2, str)
+#   box[3].insert(2, ' ' * length)
+#   box[4].insert(2, TOP_BOTTOM * length)
+#   p box
+#   puts box
+# end
 
 def print_in_box(message)
-  horizontal = "+#{'-'*(message.size + 2)}+"
-  empty_line = "|#{' '*(message.size + 2)}|"
+  if message.size <= 76
+    horizontal = "+#{'-'*(message.size + 2)}+"
+    empty_line = "|#{' '*(message.size + 2)}|"
+  else
+    horizontal = "+#{'-'*(78)}+"
+    empty_line = "|#{' '*(78)}|"
+  end
 
   puts horizontal
   puts empty_line
-  puts "| #{message} |"
+  puts "| #{message[0,76]} |"
   puts empty_line
   puts horizontal
 end
 
 print_in_box('To boldly go where no one has gone before.')
+print_in_box('To boldly go where no one has gone before. But this one is longer!!! More than 80 long in fact!')
 print_in_box('')
