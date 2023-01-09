@@ -72,8 +72,7 @@ end
 #   p box
 #   puts box
 # end
-
-def print_in_box(message)
+def make_box_lines(message)
   if message.size <= 76
     horizontal = "+#{'-'*(message.size + 2)}+"
     empty_line = "|#{' '*(message.size + 2)}|"
@@ -81,6 +80,12 @@ def print_in_box(message)
     horizontal = "+#{'-'*(78)}+"
     empty_line = "|#{' '*(78)}|"
   end
+
+  return horizontal, empty_line
+end
+
+def print_in_box(message)
+  horizontal, empty_line = make_box_lines(message)
 
   puts horizontal
   puts empty_line
