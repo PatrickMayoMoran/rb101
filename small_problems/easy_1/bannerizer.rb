@@ -84,12 +84,7 @@ def make_box_lines(message)
   return horizontal, empty_line
 end
 
-def print_in_box(message)
-  horizontal, empty_line = make_box_lines(message)
-
-  puts horizontal
-  puts empty_line
-
+def make_message_lines(message)
   number_of_lines = message.size / 76 + 1
   if number_of_lines > 1
     start = 0
@@ -103,6 +98,15 @@ def print_in_box(message)
   else
     puts "| #{message} |"
   end
+end
+
+def print_in_box(message)
+  horizontal, empty_line = make_box_lines(message)
+
+  puts horizontal
+  puts empty_line
+
+  make_message_lines(message)
 
   puts empty_line
   puts horizontal
