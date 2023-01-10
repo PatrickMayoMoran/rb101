@@ -38,4 +38,18 @@
 # CODE
 
 def get_word(type)
+  case type
+    when type.start_with?('a') then modifier = 'an'
+    else modifier = 'a'
+  end
+
+  print "Please enter #{modifier} #{type}: "
+  result = gets.chomp
 end
+
+def mad_libs
+  noun = get_word('noun')
+  puts noun
+end
+
+mad_libs
