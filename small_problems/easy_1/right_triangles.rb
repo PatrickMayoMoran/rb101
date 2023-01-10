@@ -73,9 +73,19 @@ def top_left_triangle(size)
 end
 
 def bottom_left_triangle(size)
+  spaces = size -1
+  size.times do |i|
+    puts "#{'*' * (i + 1)}#{' ' * spaces}"
+    spaces -= 1
+  end
 end
 
 def top_right_triangle(size)
+  stars = size
+  size.times do |i|
+    puts "#{' ' * i}#{'*' * stars}"
+    stars -= 1
+  end
 end
 
 triangle_extension(8, "bottom right")
