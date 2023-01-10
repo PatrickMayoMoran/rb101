@@ -44,3 +44,31 @@ triangle(9)
 #     iterate through given integer
 #       on each iteration, print size -  iteration number of spaces
 #       after that, print iteration number of stars
+#
+# EXTENSION
+#   Make it possible to have right angle at any corner of the grid
+#
+def triangle_extension(size, corner)
+  case corner
+    when "top right" then top_right_triangle(size)
+    when "top left" then top_left_triangle(size)
+    when "bottom right" then bottom_right_triangle(size)
+    when "bottom left" then top_left_triangle(size)
+  end
+end
+
+def bottom_right_triangle(size)
+  size.times do |index|
+    puts "#{' ' * (size-index)}#{'*' * index}"
+  end
+  puts '*' * size
+end
+
+def top_left_triangle(size)
+end
+def bottom_left_triangle(size)
+end
+def top_right_triangle(size)
+end
+
+triangle_extension(8, "bottom right")
