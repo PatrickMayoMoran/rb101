@@ -53,7 +53,7 @@ def triangle_extension(size, corner)
     when "top right" then top_right_triangle(size)
     when "top left" then top_left_triangle(size)
     when "bottom right" then bottom_right_triangle(size)
-    when "bottom left" then top_left_triangle(size)
+    when "bottom left" then bottom_left_triangle(size)
   end
 end
 
@@ -65,10 +65,20 @@ def bottom_right_triangle(size)
 end
 
 def top_left_triangle(size)
+  start = size
+  size.times do |i|
+    puts "#{'*' * start}#{' ' * i}"
+    start -= 1
+  end
 end
+
 def bottom_left_triangle(size)
 end
+
 def top_right_triangle(size)
 end
 
 triangle_extension(8, "bottom right")
+triangle_extension(8, "bottom left")
+triangle_extension(8, "top right")
+triangle_extension(8, "top left")
