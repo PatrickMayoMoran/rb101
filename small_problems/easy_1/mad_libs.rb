@@ -39,7 +39,7 @@
 
 def get_word(type)
   case type
-    when type.start_with?('a') then modifier = 'an'
+    when 'adjective', 'adverb' then modifier = 'an'
     else modifier = 'a'
   end
 
@@ -49,7 +49,12 @@ end
 
 def mad_libs
   noun = get_word('noun')
-  puts noun
+  verb = get_word('verb')
+  adjective = get_word('adjective')
+  adverb = get_word('adverb')
+
+  puts "Do you let your #{adjective} #{noun} #{verb} #{adverb}? No way!!!"
+
 end
 
 mad_libs
