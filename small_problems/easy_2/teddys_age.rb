@@ -25,8 +25,12 @@
 # CODE
 
 def teddys_age
+  print "Please enter a name: "
+  name = gets.chomp
+  name = "Teddy" if name.empty?
+
   age = rand(20..200)
-  puts "Teddy is #{age} years old!"
+  puts "#{name} is #{age} years old!"
 end
 
 teddys_age
