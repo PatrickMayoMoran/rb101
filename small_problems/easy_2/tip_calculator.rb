@@ -34,18 +34,17 @@
 #
 # CODE
 def tip_calculator
-#     get bill amount from user
-  print "What is the bill?"
+  print "What is the bill? "
   bill = gets.chomp.to_f
-#
-#     get tip percentage from user
-  print "What tip percentage would you like to leave?"
+
+  print "What tip percentage would you like to leave? "
   percentage = gets.chomp.to_f
-#
-#     calculate tip
-  tip = percentage * bill
-#     convert tip to string
+  tip = (percentage / 100 ) * bill
 #     truncate cents
-#
-#     calculate total
+  total = bill + tip
 #     display tip and total
+  puts "The tip is #{tip}."
+  puts "The total bill is #{total}"
+end
+
+tip_calculator
