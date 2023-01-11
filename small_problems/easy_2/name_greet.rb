@@ -36,7 +36,7 @@ def greet
 
   if     name.end_with?('!') then big_greet(name)
   elsif  name.end_with?('?') then confusing_greet(name)
-  else   small_greet(name)
+  else   puts "Hello #{name}! Nice to meet you."
   end
 
 end
@@ -49,9 +49,6 @@ end
 def confusing_greet(name)
   name = name.reverse[1, (name.size - 1)].reverse
   puts "Hello #{name}... if that's who you really are?"
-end
-
-def small_greet(name)
 end
 
 greet
