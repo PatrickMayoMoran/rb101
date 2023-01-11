@@ -25,7 +25,29 @@
 #     if not, small greet
 #     if ?, confusing greet
 #   What helper methods do we need? What will they do?
+#   big greet - all caps greeting with name
+#   confusing greet - greet with a confusing message
+#   small greet - regular greet
 #
 # CODE
 def greet
+  print "What is your name? "
+  name = gets.chomp
+
+  if     name.end_with?('!') then big_greet(name)
+  elsif  name.end_with?('?') then confusing_greet(name)
+  else   small_greet(name)
+  end
+
 end
+
+def big_greet(name)
+end
+
+def confusing_greet(name)
+end
+
+def small_greet(name)
+end
+
+greet
