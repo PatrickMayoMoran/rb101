@@ -42,9 +42,13 @@ def greet
 end
 
 def big_greet(name)
+  name = name.reverse[1, (name.size - 1)].reverse
+  puts "HELLO #{name.upcase}. WHY ARE WE SCREAMING?"
 end
 
 def confusing_greet(name)
+  name = name.reverse[1, (name.size - 1)].reverse
+  puts "Hello #{name}... if that's who you really are?"
 end
 
 def small_greet(name)
