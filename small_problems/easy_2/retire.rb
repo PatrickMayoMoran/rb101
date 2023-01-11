@@ -34,4 +34,17 @@
 #
 # CODE
 def retire
+  print "What is your current age? "
+  age = gets.chomp.to_i
+
+  print "At what age would you like to retire? "
+  retire_age = gets.chomp.to_i
+
+  years_to_go = retire_age - age
+  t = Time.now
+
+  puts "The year currently is #{t.year}. You will retire in #{t.year + years_to_go}."
+  puts "You have only #{years_to_go} years left to go! 'Good Luck'."
 end
+
+retire
