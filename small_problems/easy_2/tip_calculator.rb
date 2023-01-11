@@ -39,12 +39,12 @@ def tip_calculator
 
   print "What tip percentage would you like to leave? "
   percentage = gets.chomp.to_f
-  tip = (percentage / 100 ) * bill
-#     truncate cents
-  total = bill + tip
-#     display tip and total
-  puts "The tip is #{tip}."
-  puts "The total bill is #{total}"
+
+  tip = ((percentage / 100 ) * bill).round(2)
+  total = (bill + tip).round(2)
+
+  puts "The tip is #{format('%.2f', tip)}"
+  puts "The total bill is #{format('%.2f', total)}"
 end
 
 tip_calculator
