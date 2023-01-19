@@ -19,3 +19,13 @@
 (1..99).each do |number|
   puts number if number.odd?
 end
+
+value = 1
+loop do
+  puts value
+  value += 2
+  break if value > 99
+end
+
+1.upto(99) { |number| puts number if number.odd? }
+
